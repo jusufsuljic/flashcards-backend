@@ -9,7 +9,8 @@ import { ExceptionFilter, Catch, ArgumentsHost, HttpStatus } from '@nestjs/commo
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
   catch(exception: any, host: ArgumentsHost): void {
-    console.log(exception);
+    // Used for debugging
+    //console.log(exception);
 
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
