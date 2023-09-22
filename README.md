@@ -14,7 +14,7 @@ Before you begin, make sure you have the following prerequisites installed:
 
 1.  **Clone the Repository**: Start by cloning this repository to your local machine.
     
-    bashCopy code
+    bash code
     
     `https://github.com/jusufsuljic/flashcards-backend.git` 
     
