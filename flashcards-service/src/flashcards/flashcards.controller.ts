@@ -60,7 +60,7 @@ export class FlashcardsController {
    * @throws {RpcException} - If the title of the flashcard is empty, a RpcException is thrown with a HttpException.
    */
   @MessagePattern('update_flashcard')
-  async update(@Payload() updateFlashcardDto: UpdateFlashcardDto) {
+  async update(@Payload() updateFlashcardDto: UpdateFlashcardDto): Promise<Flashcard> {
     if (!updateFlashcardDto.title) {
       throw new RpcException(new HttpException("Title of the flashcard cannot be empty.", HttpStatus.BAD_REQUEST));
     }

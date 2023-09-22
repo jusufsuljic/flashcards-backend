@@ -17,7 +17,7 @@ async function bootstrap() {
 
   app.useGlobalFilters(new CustomRpcExceptionFilter())
   app.listen();
-  logger.log("FLASHCARDS MICROSERVICE LISTENING...")
+  logger.log(`FLASHCARDS MICROSERVICE LISTENING ON PORT ${SERVICE_PORT}.`)
 }
 
 bootstrap();

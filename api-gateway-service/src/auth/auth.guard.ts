@@ -7,6 +7,12 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 
+/**
+ * AuthGuard class that implements the CanActivate interface to protect routes
+ * based on the presence of a valid JWT token in the request header.
+ * @class
+ * @implements {CanActivate}
+ */
 @Injectable()
 export class AuthGuard implements CanActivate {
     constructor(private jwtService: JwtService) { }

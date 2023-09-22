@@ -1,5 +1,8 @@
-import { IsString, IsInt, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty } from 'class-validator';
 
+/**
+ * Data transfer object for creating a flashcard.
+ */
 export class CreateFlashcardDto {
     @IsString()
     @IsNotEmpty()
