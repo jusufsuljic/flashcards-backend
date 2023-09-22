@@ -10,11 +10,21 @@ export class AuthController {
         @Inject('AUTHENTICATION') private authService: ClientProxy) {
     }
 
+    /**
+     * Registers a new user by sending a "register" message to the authentication service.
+     * @param {RegisterDto} registerDto - The data transfer object containing the user's registration information.
+     * @returns A promise that resolves to the result of the registration process.
+     */
     @Post('register')
     public async register(@Body() registerDto: RegisterDto) {
         return await firstValueFrom(this.authService.send("register", registerDto));
     }
 
+    /**
+     * Handles the login request by sending the loginDto to the authService.
+     * @param {LoginDto} loginDto - The login data transfer object containing the user's credentials.
+     * @returns A promise that resolves to the result of the login request.
+     */
     @Post('login')
     public async login(@Body() loginDto: LoginDto) {
         return await firstValueFrom(this.authService.send("login", loginDto));

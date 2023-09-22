@@ -60,7 +60,7 @@ export class FlashcardsService {
   async getShareUrl(userId: string): Promise<string> {
     try {
       const shareToken = await this.encryptUserId(userId);
-      return `http://localhost:8000/flashcards/shared?sharetoken=${shareToken}`;
+      return `http://localhost:${process.env.GATEWAY_PORT}/flashcards/shared?sharetoken=${shareToken}`;
     }
     catch (e) {
       throw new RpcException(new HttpException("Something went wrong while generating a share url.", HttpStatus.INTERNAL_SERVER_ERROR));
