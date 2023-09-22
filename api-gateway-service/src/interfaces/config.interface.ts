@@ -1,8 +1,6 @@
-interface ApiConfigProps {
-    apiUrl: string
+interface GatewayConfigProps {
+    jwt_secret: string
+    gateway_port: number
 }
+    
 
-interface MongoDbProps{
-    connectionString: string,
-    databaseName: string
-}

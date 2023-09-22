@@ -5,7 +5,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Flashcard } from './schema/flashcard.schema';
 import { Model, Types } from 'mongoose';
 import * as CryptoJS from 'crypto-js'
-import { SECRET_KEY } from 'src/constants';
 import { RpcException } from '@nestjs/microservices';
 
 @Injectable()
@@ -69,13 +68,13 @@ export class FlashcardsService {
   }
 
   private async encryptUserId(userId: string): Promise<string> {
-    const encrypted = await CryptoJS.AES.encrypt(userId, SECRET_KEY);
+    const encrypted = await CryptoJS.AES.encrypt(userId, process.env.SECRET_KEY);
     const urlEncodedString = encodeURIComponent(encrypted);
     return urlEncodedString.toString();
   }
 
   private async decryptUserId(encryptedUserId: string): Promise<string> {
-    const decrypted = await CryptoJS.AES.decrypt(encryptedUserId, SECRET_KEY);
+    const decrypted = await CryptoJS.AES.decrypt(encryptedUserId, process.env.SECRET_KEY);
     return decrypted.toString(CryptoJS.enc.Utf8);
   }
 }

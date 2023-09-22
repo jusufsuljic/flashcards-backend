@@ -4,10 +4,15 @@ import { FlashcardsController } from './flashcards/flashcards.controller';
 import { AuthController } from './auth/auth.controller';
 import { AuthGuard } from './auth/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
-import { JWT_SECRET } from './constants';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { config } from './config/config'
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [config]
+    }),
     ClientsModule.register([
       {
         name: 'FLASHCARDS',
@@ -24,11 +29,15 @@ import { JWT_SECRET } from './constants';
         }
       },
     ]),
-    JwtModule.register({
-      global: true,
-      secret: JWT_SECRET,
-      signOptions: { expiresIn: '1h'}
-    })
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        global: true,
+        secret: configService.get<string>('JWT_SECRET'), 
+        signOptions: { expiresIn: '1h' },
+      }),
+      inject: [ConfigService],
+    }),
   ],
   controllers: [FlashcardsController, AuthController],
   providers: [AuthGuard],

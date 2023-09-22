@@ -1,1 +1,1 @@
-export const SECRET_KEY = "c697a34fb7b04dd6e7c0ac098bc598d7c03c6d81921a61b8e73fc5e4ed500c61"
+export const SERVICE_PORT = 4200
